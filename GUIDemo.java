@@ -15,6 +15,7 @@ public class GUIDemo extends JFrame
     private JPanel panel;
     private JButton biggerButton;
     private JButton smallerButton;
+    private JButton badButton;
 
     /**
      * Set up the application.
@@ -27,11 +28,14 @@ public class GUIDemo extends JFrame
         panel = new JPanel();
         biggerButton = new JButton("BIGGER");
         smallerButton = new JButton("SMALLER");
+        badButton = new JButton("DO NOT PRESS");
         biggerButton.addActionListener(new ButtonHandler());
         smallerButton.addActionListener(new ButtonHandler());
+        badButton.addActionListener(new ButtonHandler());
         add(panel);
         panel.add(biggerButton);
         panel.add(smallerButton);
+        panel.add(badButton);
         setVisible(true);
 
     }
@@ -54,9 +58,12 @@ public class GUIDemo extends JFrame
             {
                 setSize(size.width + 10, size.height + 10);
             }
-            else
+            else if(e.getSource().equals(smallerButton))
             {
                 setSize(size.width - 10, size.height - 10);
+            } else {
+                setSize(250, 100);
+                setTitle("Dude, I told you not to.");
             }
 
         }
